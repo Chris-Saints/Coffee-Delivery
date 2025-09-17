@@ -2,41 +2,41 @@ import { ShoppingCart } from "phosphor-react";
 import { ButtonBuy, ContainerBuy, ContainerCoffee, ContainerCoffeeDescrition, ContainerLiCoffee, Price, PriceStrong, TypeCoffee } from "./styles";
 import { BuyAmount } from "./components/BuyAmount";
 import { produtos } from "./Produtos";
-import { useState } from "react";
+// import { useState } from "react";
 
-
+    // type ProdutoCarrinho = {
+    //     id: number;
+    //     img: string
+    //     nome: string;
+    //     quantidade: number;
+    //     total: number;
+    // };
 
 export function Produto() {
 
-    const quantidade = document.getElementById("buyAmount") as HTMLInputElement;
+    // const quantidade = document.getElementById("buyAmount") as HTMLInputElement;
 
 
-    type ProdutoCarrinho = {
-        id: number;
-        img: string
-        nome: string;
-        quantidade: number;
-        total: number;
-    };
 
-    const [carrinho, setCarrinho] = useState<ProdutoCarrinho[]>([])
 
-    function adicionarAoCarrinho(item: ProdutoCarrinho) {
-        setCarrinho(() => [...carrinho, item])
-    }
+    // const [carrinho, setCarrinho] = useState<ProdutoCarrinho[]>([])
 
-    function handleAdd(id:number) {
-        const itemNaLista = produtos.find((p) => p.id === id);
-        if(itemNaLista) {
-            adicionarAoCarrinho({
-                id: itemNaLista.id,
-                img: itemNaLista.img,
-                nome: itemNaLista.nome,
-                quantidade: quantidade.value,
-                total: quantidade.value * 9.90,
-            })
-        }
-    }
+    // function adicionarAoCarrinho(item: ProdutoCarrinho) {
+    //     setCarrinho(() => [...carrinho, item])
+    // }
+
+    // function handleAdd(id:number) {
+    //     const itemNaLista = produtos.find((p) => p.id === id);
+    //     if(itemNaLista) {
+    //         adicionarAoCarrinho({
+    //             id: itemNaLista.id,
+    //             img: itemNaLista.img,
+    //             nome: itemNaLista.nome,
+    //             quantidade: Number(quantidade.value),
+    //             total: Number(quantidade.value) * 9.90,
+    //         })
+    //     }
+    // }
 
 
 
@@ -70,7 +70,7 @@ export function Produto() {
                             initialValue={1}
                         />
 
-                        <ButtonBuy onClick={() => adicionarAoCarrinho(produto)} >
+                        <ButtonBuy  >
                             <ShoppingCart size={22} weight="fill"/>
                         </ButtonBuy>
                     </ContainerBuy>
