@@ -53,7 +53,7 @@ export const ContainerTopic = styled.div`
     max-width: 37.4rem;
 `
 
-export const Topic = styled.p`
+export const Topic = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;

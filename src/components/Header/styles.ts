@@ -1,14 +1,10 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
-    padding: 2.5rem 0 2rem;
-`
-
 export const HeaderContent = styled.div`
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 0 2rem;
 
     display: flex;
     justify-content: space-between;

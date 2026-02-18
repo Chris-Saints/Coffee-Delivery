@@ -2,12 +2,16 @@ import { ColumnIconOne, ColumnIconTwo, ContainerProduto, ContainerTopic, FirstTi
 import Banner from "../../assets/Banner.svg"
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import { Produto } from "../../components/Produto";
+import { Header } from "../../components/Header";
+import { produtos } from "../../components/Produto/Produtos";
+
 
 export function Home() {
-    
+
 
     return (
         <MainContainer>
+            <Header />
             
             <MainContent>
 
@@ -66,7 +70,9 @@ export function Home() {
             <TitleProdutos>Nossos cafés</TitleProdutos>
 
             <ContainerProduto>
-                <Produto />
+                {produtos.map(produto => (
+                    <Produto key={produto.id} produto={produto} />
+                ))}
             </ContainerProduto>
 
 

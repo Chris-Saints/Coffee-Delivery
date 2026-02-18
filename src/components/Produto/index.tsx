@@ -1,83 +1,62 @@
 import { ShoppingCart } from "phosphor-react";
 import { ButtonBuy, ContainerBuy, ContainerCoffee, ContainerCoffeeDescrition, ContainerLiCoffee, Price, PriceStrong, TypeCoffee } from "./styles";
-import { BuyAmount } from "./components/BuyAmount";
-import { produtos } from "./Produtos";
-// import { useState } from "react";
+import { ControleQuantidade } from "./components/ControleQuantidade";
+import { useCarrinho } from "../../contexts/useCarrinho";
+import { useState } from "react";
+import type { InfoBase } from "./Produtos";
 
-    // type ProdutoCarrinho = {
-    //     id: number;
-    //     img: string
-    //     nome: string;
-    //     quantidade: number;
-    //     total: number;
-    // };
+interface ProdutosProps{
+    produto: InfoBase
+}
 
-export function Produto() {
+export function Produto({produto}: ProdutosProps) {
 
-    // const quantidade = document.getElementById("buyAmount") as HTMLInputElement;
-
-
-
-
-    // const [carrinho, setCarrinho] = useState<ProdutoCarrinho[]>([])
-
-    // function adicionarAoCarrinho(item: ProdutoCarrinho) {
-    //     setCarrinho(() => [...carrinho, item])
-    // }
-
-    // function handleAdd(id:number) {
-    //     const itemNaLista = produtos.find((p) => p.id === id);
-    //     if(itemNaLista) {
-    //         adicionarAoCarrinho({
-    //             id: itemNaLista.id,
-    //             img: itemNaLista.img,
-    //             nome: itemNaLista.nome,
-    //             quantidade: Number(quantidade.value),
-    //             total: Number(quantidade.value) * 9.90,
-    //         })
-    //     }
-    // }
-
-
+    const {carrinho, adicionarAoCarrinho} = useCarrinho()
+    const [quantidade, setQuantidade] = useState(1)
+    
+    
+    console.log(carrinho);
+    
 
     return (
         <ContainerCoffee>
-            {produtos.map(produto => (
-                <ContainerLiCoffee key={produto.id}>
-                    <img src={produto.img} />
 
-                    <TypeCoffee>
-                        <span>{produto.especificidade1}</span>
+            <ContainerLiCoffee key={produto.id}>
+                <img src={produto.img} />
 
-                        {produto.especificidade2 && <span>{produto.especificidade2}</span>}
-                        {produto.especificidade3 && <span>{produto.especificidade3}</span>}     
-                    </TypeCoffee>
+                <TypeCoffee>
+                    <span>{produto.especificidade1}</span>
 
-                    <ContainerCoffeeDescrition>
-                        <h2>{produto.nome}</h2>
+                    {produto.especificidade2 && <span>{produto.especificidade2}</span>}
+                    {produto.especificidade3 && <span>{produto.especificidade3}</span>}     
+                </TypeCoffee>
 
-                        <p>{produto.descricao}</p>  
-                    </ContainerCoffeeDescrition>
+                <ContainerCoffeeDescrition>
+                    <h2>{produto.nome}</h2>
 
-                    <ContainerBuy>
-                        <Price>R$<PriceStrong>{produto.preco.toFixed(2)}</PriceStrong></Price>
+                    <p>{produto.descricao}</p>  
+                </ContainerCoffeeDescrition>
 
-                        <label htmlFor="buyAmount"></label>
-                        <BuyAmount
-                            id="buyAmount"
-                            min={1}
-                            max={99}
-                            initialValue={1}
-                        />
+                <ContainerBuy>
+                    <Price>R$<PriceStrong>{produto.preco.toFixed(2)}</PriceStrong></Price>
 
-                        <ButtonBuy  >
-                            <ShoppingCart size={22} weight="fill"/>
-                        </ButtonBuy>
-                    </ContainerBuy>
-                </ContainerLiCoffee>
+                    <ControleQuantidade 
+                        quantidade={quantidade}
+                        Aumentar={() => {
+                            if(quantidade === 99) return 
+                            setQuantidade(prev => prev + 1)
+                        }}
+                        Diminuir={() => {
+                            if(quantidade === 1) return
+                            setQuantidade(prev => prev - 1)
+                        }}
+                    />
 
-            ))}
-
+                    <ButtonBuy onClick={() => adicionarAoCarrinho({...produto, quantidade})}>
+                        <ShoppingCart size={22} weight="fill"/>
+                    </ButtonBuy>
+                </ContainerBuy>
+            </ContainerLiCoffee>
         </ContainerCoffee>
     )
 } 

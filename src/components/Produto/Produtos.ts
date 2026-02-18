@@ -26,7 +26,6 @@ export interface InfoBase {
     nome: string
     descricao: string
     preco: number
-
 }
 
 export const produtos: InfoBase[] = [
@@ -36,7 +35,8 @@ export const produtos: InfoBase[] = [
         especificidade1: "TRADICIONAL",
         nome: "Expresso Tradicional",
         descricao: "O tradicional café feito com água quente e grãos moídos",
-        preco: 9.90
+        preco: 9.90,
+
     },
 
     {
@@ -45,7 +45,8 @@ export const produtos: InfoBase[] = [
         especificidade1: "TRADICIONAL",
         nome: "Expresso Americano",
         descricao: "Expresso diluído, menos intenso que o tradicional",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -54,7 +55,8 @@ export const produtos: InfoBase[] = [
         especificidade1: "TRADICIONAL",
         nome: "Expresso Cremoso",
         descricao: "Café expresso tradicional com espuma cremosa",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -64,7 +66,8 @@ export const produtos: InfoBase[] = [
         especificidade2: "GELADO",
         nome: "Expresso Gelado",
         descricao: "Bebida preparada com café expresso e cubos de gelo",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -74,7 +77,8 @@ export const produtos: InfoBase[] = [
         especificidade2: "COM LEITE",
         nome: "Café com Leite",
         descricao: "Meio a meio de expresso tradicional com leite vaporizado",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -84,7 +88,8 @@ export const produtos: InfoBase[] = [
         especificidade2: "COM LEITE",
         nome: "Latte",
         descricao: "Uma dose de café expresso com o dobro de leite e espuma cremosa",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -94,7 +99,8 @@ export const produtos: InfoBase[] = [
         especificidade2: "COM LEITE",
         nome: "Capuccino",
         descricao: "Bebida com canela feita de doses iguais de café, leite e espuma",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -104,7 +110,8 @@ export const produtos: InfoBase[] = [
         especificidade2: "COM LEITE",
         nome: "Macchiato",
         descricao: "Café expresso misturado com um pouco de leite quente e espuma",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -114,7 +121,8 @@ export const produtos: InfoBase[] = [
         especificidade2: "COM LEITE",
         nome: "Mocaccino",
         descricao: "Café expresso com calda de chocolate, pouco leite e espuma",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -124,7 +132,8 @@ export const produtos: InfoBase[] = [
         especificidade2: "COM LEITE",
         nome: "Chocolate Quente",
         descricao: "Bebida feita com chocolate dissolvido no leite quente e café",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -135,7 +144,8 @@ export const produtos: InfoBase[] = [
         especificidade3: "GELADO",
         nome: "Cubano",
         descricao: "Drink gelado de café expresso com rum, creme de leite e hortelã",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -144,7 +154,8 @@ export const produtos: InfoBase[] = [
         especificidade1: "ESPECIAL",
         nome: "Havaiano",
         descricao: "Bebida adocicada preparada com café e leite de coco",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -153,7 +164,8 @@ export const produtos: InfoBase[] = [
         especificidade1: "ESPECIAL",
         nome: "Árabe",
         descricao: "Bebida preparada com grãos de café árabe e especiarias",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 
     {
@@ -163,6 +175,7 @@ export const produtos: InfoBase[] = [
         especificidade2: "ALCOÓLICO",
         nome: "Irlandês",
         descricao: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
-        preco: 9.90 
+        preco: 9.90,
+
     },
 ]

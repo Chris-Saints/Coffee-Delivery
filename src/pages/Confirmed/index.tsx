@@ -1,10 +1,13 @@
 import { MapPin, Money, Timer } from "phosphor-react"
 import { InfoContainer, InfoDeliveryContainer, MainContainer, SectionContainer, TitleContainer, TopicContainer } from "./styles"
 import Ilustracao from "../../assets/Illustration.svg"
+import { Header } from "../../components/Header"
 
 export function Confirmed() {
+    
     return(
         <MainContainer>
+            <Header />
 
             <TitleContainer>
                 <h2>Uhu! Pedido confirmado</h2>

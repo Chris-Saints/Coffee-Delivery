@@ -2,9 +2,7 @@ import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money} from "phosphor-rea
 import { ButtonBuy, CEPContainer, ContainerInput, FormContainer, InfoContainer, ListAndConfirmed, ListProductContainer, PayButton, PayContainer, PriceContainer, TitleInfoContainer } from "./styles";
 import { ItemProduct } from "./components/Item";
 import { useNavigate } from "react-router-dom";
-
-
-
+import { Header } from "../../components/Header";
 
 export function Cart() {
 
@@ -12,6 +10,8 @@ export function Cart() {
     
     return (
         <FormContainer>
+            <Header />
+            
             <InfoContainer>
                 <h2>Complete seu pedido</h2>
 
@@ -66,7 +66,6 @@ export function Cart() {
                 <ListAndConfirmed>
 
                     <section>
-                        <ItemProduct />
                         <ItemProduct />
                     </section>
 

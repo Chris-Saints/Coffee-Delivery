@@ -10,8 +10,8 @@ export const FormContainer = styled.form`
     margin: 0 auto;
     padding: 0 1.5rem;
 
-    width: 100%;
-    max-width: 1400px;
+    
+    
 `
 
 export const InfoContainer = styled.section`
@@ -21,7 +21,6 @@ export const InfoContainer = styled.section`
 
     border-radius: 6px;
 
-    max-width: 40rem;
 
     h2 {
         font-size: 18px;
@@ -155,7 +154,6 @@ export const PayButton = styled.div`
         gap: 0.75rem;
         border: 0;
 
-        width: 11.16rem;
 
         padding: 1rem;
 
