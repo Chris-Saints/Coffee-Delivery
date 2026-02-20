@@ -11,11 +11,13 @@ interface ProdutosProps{
 
 export function Produto({produto}: ProdutosProps) {
 
-    const {carrinho, adicionarAoCarrinho} = useCarrinho()
+    const { dispatch } = useCarrinho()
     const [quantidade, setQuantidade] = useState(1)
-    
-    
-    console.log(carrinho);
+
+    function adicionarAOCarrinho() {
+        dispatch({type: "ADICIONAR", payload: {...produto, quantidade}})
+    }
+
     
 
     return (
@@ -52,7 +54,7 @@ export function Produto({produto}: ProdutosProps) {
                         }}
                     />
 
-                    <ButtonBuy onClick={() => adicionarAoCarrinho({...produto, quantidade})}>
+                    <ButtonBuy onClick={adicionarAOCarrinho}>
                         <ShoppingCart size={22} weight="fill"/>
                     </ButtonBuy>
                 </ContainerBuy>

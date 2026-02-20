@@ -1,57 +1,79 @@
-import { useState, type ReactNode } from "react";
-import { CarrinhoContext, type ProdutoCarrinho } from "./CarrinhoContext";
+import { useEffect, useReducer, useState, type ReactNode } from "react";
+import { CarrinhoContext } from "./CarrinhoContext";
+import { carrinhoReducer, initialState } from "../reducers/carrinhoReducer";
 
-
+export type InformacoesDePagamento = {
+    cep: string,
+    rua: string,
+    numero: string,
+    complemento?: string,  //Converter para string
+    bairro: string,
+    cidade: string,
+    uf: string,
+    pagamento: string
+}
 
 export function CarrinhoProvider({ children }: {children: ReactNode }) {
 
 
-    const [carrinho, setCarrinho] = useState<ProdutoCarrinho[]>([]);
+    const [carrinho, dispatch] = useReducer(
+        carrinhoReducer,
+        initialState,
+        (initial) => {
+            const dados = localStorage.getItem("carrinho")
+            return dados ? JSON.parse(dados) : initial
+        }
+    );
 
-    function adicionarAoCarrinho(produto: ProdutoCarrinho) {
-        setCarrinho((prev) => {
-            const produtoExiste = prev.find(item => item.id === produto.id);
+    const [endereco, setEndereco] = useState<InformacoesDePagamento>({
+        cep: "",
+        rua: "",
+        numero: "",
+        complemento: "",  //Converter para string
+        bairro: "",
+        cidade: "",
+        uf: "",
+        pagamento: ""
+    });
 
-            //validação se há produto já no carrinho. PAra aumentar apenas a quantidadew
 
-            if(produtoExiste) {
-                return prev.map(item =>
-                    item.id === produto.id
-                    ? {...item, quantidade: item.quantidade! + produto.quantidade!}
-                    : item
-                )
-            }
-            return [...prev, produto]
-        });
+
+
+    function confirmarCompra(endereco: InformacoesDePagamento) {
+        setEndereco(endereco)
     }
 
-    function addQuantidade(id: number) {
-        setCarrinho(prev => 
-            prev.map(produto => 
-                produto.id === id
-                ? produto.quantidade! === 5
-                ? produto
-                : {...produto, quantidade: produto.quantidade! + 1}
-                : produto
-            )
-        )
+    function handleChangeEndereco(e: React.ChangeEvent<HTMLInputElement | HTMLButtonElement>) {
+        const {name, value } = e.target;
+
+        setEndereco(prev => ({
+            ...prev,
+            [name]: value
+        }));
     }
 
-    function subQuantidade(id: number) {
-        setCarrinho(prev => 
-            prev.map(produto => 
-                produto.id === id
-                ? produto.quantidade! === 1
-                ? produto
-                : {...produto, quantidade: produto.quantidade! - 1}
-                : produto
-            )
-        )
+    function selecionarPagamento(pagamento: string) {
+        setEndereco(prev => ({
+            ...prev,
+            pagamento
+        }))
+        
     }
+
+
+
+
+    const totalCarrinho = carrinho.reduce((acc, item) => {
+        return acc + item.preco * item.quantidade
+    }, 0)
+
+    useEffect(() => {
+        localStorage.setItem("carrinho",JSON.stringify(carrinho))
+    },[carrinho])
 
 
     return(
-        <CarrinhoContext.Provider value={{carrinho, adicionarAoCarrinho, addQuantidade, subQuantidade}}>
+        <CarrinhoContext.Provider value={{carrinho, totalCarrinho, dispatch, endereco, confirmarCompra, handleChangeEndereco, selecionarPagamento}}>
             { children }
         </CarrinhoContext.Provider>
     )

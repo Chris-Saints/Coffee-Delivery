@@ -1,4 +1,6 @@
-import { createContext } from "react";
+import { createContext, type Dispatch } from "react";
+import type { InformacoesDePagamento } from "./CarrinhoProvider";
+import type { CarrinhoAction } from "../reducers/carrinhoReducer";
 
 export type ProdutoCarrinho = {
     id: number
@@ -9,14 +11,18 @@ export type ProdutoCarrinho = {
     nome: string
     descricao: string
     preco: number
-    quantidade?: number
+    quantidade: number
 };
 
 export type CarrinhoContextType = {
     carrinho: ProdutoCarrinho[];
-    adicionarAoCarrinho: (produto: ProdutoCarrinho) => void;
-    addQuantidade:(id: number) => void;
-    subQuantidade:(id: number) => void;
+    totalCarrinho: number
+    dispatch: Dispatch<CarrinhoAction>
+    
+    endereco: InformacoesDePagamento;
+    confirmarCompra:(endereco: InformacoesDePagamento) => void;
+    handleChangeEndereco: (e: React.ChangeEvent<HTMLInputElement | HTMLButtonElement>) => void
+    selecionarPagamento: (pagamento: string) => void
 }
 
 export const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined)
