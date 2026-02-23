@@ -36,7 +36,11 @@ export function CarrinhoProvider({ children }: {children: ReactNode }) {
         pagamento: ""
     });
 
+    const [pago, setPago] = useState<boolean>(false)
 
+    function taPago() {
+        setPago(!pago)
+    }
 
 
     function confirmarCompra(endereco: InformacoesDePagamento) {
@@ -60,6 +64,19 @@ export function CarrinhoProvider({ children }: {children: ReactNode }) {
         
     }
 
+    function esvaziarEndereco() {
+        setEndereco({
+            cep: '',
+            rua: '',
+            numero: '',
+            complemento: '', 
+            bairro: '',
+            cidade: '',
+            uf: '',
+            pagamento: ''
+        })
+    }
+
 
 
 
@@ -73,7 +90,7 @@ export function CarrinhoProvider({ children }: {children: ReactNode }) {
 
 
     return(
-        <CarrinhoContext.Provider value={{carrinho, totalCarrinho, dispatch, endereco, confirmarCompra, handleChangeEndereco, selecionarPagamento}}>
+        <CarrinhoContext.Provider value={{carrinho, pago, taPago, totalCarrinho, esvaziarEndereco, dispatch, endereco, confirmarCompra, handleChangeEndereco, selecionarPagamento}}>
             { children }
         </CarrinhoContext.Provider>
     )

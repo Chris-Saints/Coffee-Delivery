@@ -5,17 +5,24 @@ import { Home } from './pages/Home/index.tsx'
 import { Route, Routes } from 'react-router-dom'
 import { Cart } from './pages/Cart/index.tsx'
 import { Confirmed } from './pages/Confirmed/index.tsx'
+import { Header } from './components/Header/index.tsx'
+import { ContainerAPP } from './app.styles.ts'
 
 
 function App() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/confirmed" element={<Confirmed />} />
-      </Routes>
+      <ContainerAPP>
+
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/confirmed" element={<Confirmed />} />
+        </Routes>
+        
+      </ContainerAPP>
       <GlobalStyle />
     </ThemeProvider>
 

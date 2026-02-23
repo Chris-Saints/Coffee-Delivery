@@ -2,18 +2,15 @@ import { ColumnIconOne, ColumnIconTwo, ContainerProduto, ContainerTopic, FirstTi
 import Banner from "../../assets/Banner.svg"
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import { Produto } from "../../components/Produto";
-import { Header } from "../../components/Header";
 import { produtos } from "../../components/Produto/Produtos";
 
 export function Home() {
 
 
 
-
+ 
     return (
-        <MainContainer>
-            <Header />
-            
+        <MainContainer>            
             <MainContent>
 
                 <Titles>

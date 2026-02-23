@@ -1,14 +1,15 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money} from "phosphor-react";
-import { ButtonBuy, CEPContainer, ContainerInput, FormContainer, InfoContainer, ListAndConfirmed, ListProductContainer, PayButton, PayContainer, PriceContainer, TitleInfoContainer } from "./styles";
+import { ButtonBuy, CEPContainer, ChoicePayButton, ContainerInput, FormContainer, InfoContainer, ListAndConfirmed, ListProductContainer, PayButton, PayContainer, PriceContainer, ProductList, TitleInfoContainer, WithoutItemContainer } from "./styles";
 import { ItemProduct } from "./components/Item";
 import { useNavigate } from "react-router-dom";
-import { Header } from "../../components/Header";
 import { useCarrinho } from "../../contexts/useCarrinho";
+import { useState } from "react";
 
 export function Cart() {
 
     const navigate = useNavigate();
-    const {carrinho, totalCarrinho, endereco, handleChangeEndereco, selecionarPagamento} = useCarrinho();
+    const {carrinho, totalCarrinho, endereco, handleChangeEndereco, dispatch, selecionarPagamento} = useCarrinho();
+    const [formaPagamento, setFormaPagamento] = useState<string>('')
 
     const semItens = carrinho.length === 0
 
@@ -35,11 +36,25 @@ export function Cart() {
 
         return resultado
     }
+
+    function EsvaziarCarrinhoPago() {
+        dispatch({type: 'ESVAZIAR', payload: carrinho})
+        navigate("/confirmed")
+    }
+
+    function formaDePagamento(forma: string) {
+        if(formaPagamento === forma) {
+            setFormaPagamento('');
+            selecionarPagamento('');
+        } else {
+            setFormaPagamento(forma);
+            selecionarPagamento(forma);
+        }
+    }
+
     
     return (
         <FormContainer>
-            <Header />
-            
             <InfoContainer>
                 <h2>Complete seu pedido</h2>
 
@@ -80,9 +95,33 @@ export function Cart() {
 
 
                     <PayButton>
-                        <button onClick={() => selecionarPagamento("Cartão de Crédito")} type="button"><CreditCard size={16} color="#8047F8" />CARTÃO DE CRÉDITO</button>
-                        <button onClick={() => selecionarPagamento("Cartão de Débito")} type="button"><Bank size={16} color="#8047F8" /> CARTÃO DE DÉBITO</button>
-                        <button onClick={() => selecionarPagamento("Dinheiro")} type="button"><Money size={16} color="#8047F8" /> DINHEIRO</button>
+                        <ChoicePayButton 
+                            $active={formaPagamento === "Cartão de Crédito"} 
+                            onClick={() => formaDePagamento("Cartão de Crédito")} 
+                            type="button"
+                        >
+                            <CreditCard size={16} color={formaPagamento === "Cartão de Crédito" ? "white" : "#8047F8"} />
+                            CARTÃO DE CRÉDITO
+                        </ChoicePayButton>
+
+                        <ChoicePayButton 
+                            $active={formaPagamento === "Cartão de Débito"} 
+                            onClick={() => formaDePagamento("Cartão de Débito")} 
+                            type="button"
+                        >
+                            <Bank size={16} color={formaPagamento === "Cartão de Débito" ? "white" : "#8047F8"} /> 
+                            CARTÃO DE DÉBITO
+                        </ChoicePayButton>
+
+                        <ChoicePayButton 
+                            $active={formaPagamento === "Dinheiro"} 
+                            onClick={() => formaDePagamento("Dinheiro")}
+                            type="button"
+                        >
+                            <Money size={16} color={formaPagamento === "Dinheiro" ? "white" : "#8047F8"} />
+                            DINHEIRO
+                        </ChoicePayButton>
+
                     </PayButton>
                 </PayContainer>
             </InfoContainer>
@@ -93,9 +132,14 @@ export function Cart() {
                 
                 <ListAndConfirmed>
 
-                    <section>
-                        {semItens ? <div>Sem produtos no carrinho.</div> : <ItemProduct />}
-                    </section>
+                    <ProductList>
+                        {semItens 
+                        ? <WithoutItemContainer><p>Sem produtos no carrinho.</p></WithoutItemContainer> 
+                        : carrinho.map((produto) => {
+                            return <ItemProduct key={produto.id} produto={produto} />}
+                            )
+                        }
+                    </ProductList>
 
 
                     <PriceContainer>
@@ -113,7 +157,7 @@ export function Cart() {
                         <span><strong>R$ {carrinho.length === 0 ? "0.00" : valorTotal().toFixed(2)}</strong></span>
                     </PriceContainer>
 
-                    <ButtonBuy disabled={!validacao()} onClick={() => navigate("/confirmed")} >CONFIRMAR PEDIDO</ButtonBuy>
+                    <ButtonBuy disabled={!validacao()} onClick={EsvaziarCarrinhoPago} >CONFIRMAR PEDIDO</ButtonBuy>
                 </ListAndConfirmed>
                 
             </ListProductContainer>

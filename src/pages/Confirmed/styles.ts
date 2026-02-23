@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.main`
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 70%;
+    margin: 2rem auto 0;
     padding: 0 1.5rem;
 
     display: flex;
@@ -12,7 +11,7 @@ export const MainContainer = styled.main`
     align-items: start;
 `
 
-export const TitleContainer = styled.main`
+export const TitleContainer = styled.div`
     display: flex; 
     flex-direction: column;
 
@@ -32,7 +31,7 @@ export const TitleContainer = styled.main`
     }
 `
 
-export const InfoDeliveryContainer = styled.main`
+export const InfoDeliveryContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -41,7 +40,7 @@ export const InfoDeliveryContainer = styled.main`
     width: 100%;
 `
 
-export const InfoContainer = styled.main`
+export const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -62,7 +61,7 @@ export const InfoContainer = styled.main`
         linear-gradient(to right, ${props => props.theme['base-yellow']}, ${props => props.theme['base-purple']}) border-box;
 `
 
-export const TopicContainer = styled.main`
+export const TopicContainer = styled.div`
     display: flex;
     align-items: center;
 

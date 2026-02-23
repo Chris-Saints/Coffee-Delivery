@@ -14,14 +14,15 @@ export const ProductContainer = styled.div`
     margin-bottom: 1.5rem;
 
 
-    img {
+    && img {
         height: 64px;
     }
 
-    strong {
+    && strong {
         color: ${props => props.theme['base-text']};
         display: flex;
     }
+
 `
 
 export const ProductInfoContainer = styled.div`
@@ -33,17 +34,17 @@ export const ProductInfoContainer = styled.div`
     gap: 0.5rem;
 
 
-    p {
+    && p {
         color: ${props => props.theme['base-subtitle']};
     }
 
-    section {
+    && section {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
 
-        margin-right: 1.87rem;
+        margin-right: 1rem;
     }
 `
 
@@ -62,4 +63,11 @@ export const RemoveButton = styled.button`
     border: 0;
 
     padding: 0.5rem 0.5rem;
+`
+
+export const PriceItem = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 3.5rem;
+    font-weight: bold;
 `

@@ -7,6 +7,12 @@ export const ContainerAmount = styled.div`
     padding: 0.45rem;
     border-radius: 8px;
     max-width: 4.5rem;
+
+
+    && span{
+        padding: 0 0.2rem;
+        margin: 0 0.3rem;
+    }
 `
 
 export const AmountInput = styled.input`

@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 export const HeaderContent = styled.div`
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 0 2rem;
+
+    margin: 3rem 0 2rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    width: 70%;
+
 `
 
 export const ImgContainer = styled.button`
@@ -53,4 +54,18 @@ export const NavContainer = styled.nav`
     display: flex;
     align-items: center;
     gap: 0.5rem;    
+`
+
+export const CountNumber = styled.div`
+    background-color: ${props => props.theme['yellow-dark']};
+    color: ${props => props.theme['white']};
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 100%;
+    padding: 0.3rem 0.5rem;
+
+    font-size: 13px;
 `

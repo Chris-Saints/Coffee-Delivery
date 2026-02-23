@@ -9,6 +9,7 @@ export type CarrinhoAction =
     | {type: "REMOVER"; payload: ProdutoCarrinho}
     | {type: "AUMENTAR"; payload: ProdutoCarrinho}
     | {type: "DIMINUIR"; payload: ProdutoCarrinho}
+    | {type: "ESVAZIAR"; payload: ProdutoCarrinho[]}
 
 export function carrinhoReducer(state: CarrinhoState, action: CarrinhoAction): CarrinhoState {
     switch(action.type) {
@@ -48,6 +49,10 @@ export function carrinhoReducer(state: CarrinhoState, action: CarrinhoAction): C
                         : {...item, quantidade: item.quantidade - 1}
                     : item
             )
+        }
+
+        case "ESVAZIAR": {
+            return state = []
         }
 
         default:

@@ -4,14 +4,11 @@ export const FormContainer = styled.form`
     display: flex;
     align-items: start;
     justify-content: space-between;
-    box-sizing: border-box;
+
     gap: 2rem;
 
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    width: 70%;
 
-    
-    
 `
 
 export const InfoContainer = styled.section`
@@ -20,6 +17,8 @@ export const InfoContainer = styled.section`
     gap: 0.9rem;
 
     border-radius: 6px;
+
+    width: 70%;
 
 
     h2 {
@@ -76,6 +75,7 @@ export const ContainerInput = styled.div`
     row-gap: 1rem;
 
 
+
     input {
         background: ${props => props.theme['base-input']};
         color: ${props => props.theme['base-label']};
@@ -93,15 +93,15 @@ export const ContainerInput = styled.div`
     }
 
     #rua {
-        width: 35rem;
-    }
-
-    #numero {
         flex: 1;
     }
 
+    #numero {
+        flex: 0.1;
+    }
+
     #complemento {
-        flex: 2;
+        flex: 0;
     }
 
     #bairro {
@@ -109,17 +109,14 @@ export const ContainerInput = styled.div`
     }
 
     #cidade {
-        flex: 1;
+        flex: 0;
     }
 
     #uf {
-        flex: 0.3;
+        flex: 0.5;
         min-width: 0;
     }
 `
-
-
-
 
 
 
@@ -141,23 +138,28 @@ export const PayButton = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
+`
 
-    button {
-        background: ${props => props.theme['base-button']};
-        color: ${props => props.theme['base-text']};
+export const ChoicePayButton = styled.button<{ $active: boolean }>`
+    background: ${p => p.$active ? props => props.theme['base-purple'] : props => props.theme['base-button']};
+    color: ${p => p.$active ? props => props.theme['white'] : props => props.theme['base-text']};
 
-        font-size: 12px;
+    font-size: 12px;
 
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        gap: 0.75rem;
-        border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.75rem;
+    border: 0;
 
 
-        padding: 1rem;
+    padding: 1rem;
 
-        border-radius: 6px;
+    border-radius: 6px;
+
+    && :hover {
+        background-color: ${props => props.theme['purple-light']};
+        color: ${props => props.theme['white']};
     }
 `
 
@@ -231,4 +233,19 @@ export const ButtonBuy = styled.button`
 
     border: 0;
     border-radius: 6px;
+`
+
+export const ProductList = styled.section`
+    display: flex;
+    flex-direction: column;
+`
+
+
+export const WithoutItemContainer = styled.div`
+    text-align: center;
+    padding: 1rem 0 2rem;
+    border-bottom: solid 1px ${props => props.theme['base-button']};
+    margin-bottom: 2rem;
+
+    color: ${props => props.theme['base-text']};
 `
